@@ -214,4 +214,23 @@ class GoogleMapController extends ChangeNotifier {
     });
     _markers.remove(id);
   }
+
+  /// Gets the camera LatLng bounds.
+  ///
+  /// The returned [Future] completes once the latlng's have been received from
+  /// native code.
+  Future<LatLngBounds> cameraLatLngBounds() async {
+    final dynamic json = await _channel.invokeMethod('camera#latlngbounds');
+    final LatLngBounds bounds = LatLngBounds(
+      southwest: LatLng(
+        json['southwest']['latitude'],
+        json['southwest']['longitude'],
+      ),
+      northeast: LatLng(
+        json['northeast']['latitude'],
+        json['northeast']['longitude'],
+      ),
+    );
+    return bounds;
+  }
 }
