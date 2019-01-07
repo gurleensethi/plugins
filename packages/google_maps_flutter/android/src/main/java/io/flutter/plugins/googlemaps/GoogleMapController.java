@@ -235,7 +235,7 @@ final class GoogleMapController
                 break;
             }
             case "camera#latlngbounds": {
-                final LatLngBounds bounds = map.getProjection().getVisibleRegion().latLngBounds;
+                final LatLngBounds bounds = googleMap.getProjection().getVisibleRegion().latLngBounds;
                 final Map<String, Object> json = new HashMap<>();
                 final Map<String, Object> northeast = new HashMap<>();
                 final Map<String, Object> southwest = new HashMap<>();
